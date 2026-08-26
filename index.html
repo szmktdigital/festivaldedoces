@@ -92,40 +92,80 @@
                     <span class="w-8 h-8 rounded-full bg-choc-main text-rose-gold font-serif text-base font-bold flex items-center justify-center shrink-0">1</span>
                     <div>
                         <h2 class="text-base sm:text-xl font-serif font-bold text-choc-main">Escolha seus Doces</h2>
-                        <p class="text-xs text-stone-500">Selecione uma caixa pronta ou monte sua quantidade ideal</p>
+                        <p class="text-xs text-stone-500">Selecione uma ou mais caixas fechadas ou monte sua quantidade ideal</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Quick Combo Boxes -->
+            <!-- Quick Combo Boxes with Multiple Box Controls -->
             <div class="bg-rose-light/70 rounded-xl p-4 border border-rose-gold/30 mb-6">
-                <h3 class="text-xs sm:text-sm font-bold text-choc-main uppercase tracking-wider mb-2 flex items-center gap-2">
-                    <i class="fa-solid fa-box-open text-rose-accent"></i>
-                    <span>Caixas Prontas (Mais Prático)</span>
-                </h3>
-                <p class="text-xs text-stone-600 mb-3">Clique para preencher os doces automaticamente:</p>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                    <button type="button" onclick="selectPresetBox(1)" 
-                        class="p-3 bg-white rounded-xl border border-rose-gold/40 hover:border-choc-main text-left shadow-xs transition-all touch-btn flex flex-col justify-center">
-                        <div class="flex justify-between items-center mb-0.5">
-                            <span class="font-bold text-xs text-choc-main">Caixa Degustação</span>
-                            <span class="text-[11px] font-bold text-rose-accent bg-rose-light px-1.5 py-0.5 rounded">R$ 18,80</span>
-                        </div>
-                        <span class="text-[11px] text-stone-500">8 doces (1 de cada sabor)</span>
-                    </button>
-                    <button type="button" onclick="selectPresetBox(2)" 
-                        class="p-3 bg-white rounded-xl border-2 border-rose-accent/70 hover:border-choc-main text-left shadow-xs transition-all touch-btn flex flex-col justify-center">
-                        <div class="flex justify-between items-center mb-0.5">
-                            <span class="font-bold text-xs text-choc-main">Caixa Festival</span>
-                            <span class="text-[11px] font-bold text-rose-accent bg-rose-light px-1.5 py-0.5 rounded">R$ 37,60</span>
-                        </div>
-                        <span class="text-[11px] text-stone-500">16 doces (2 de cada sabor)</span>
-                    </button>
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-xs sm:text-sm font-bold text-choc-main uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-box-open text-rose-accent"></i>
+                        <span>Caixas Prontas (Mais Prático)</span>
+                    </h3>
                     <button type="button" onclick="clearAllQuantities()" 
-                        class="p-3 bg-stone-100 rounded-xl border border-stone-300 hover:bg-stone-200 text-center text-stone-600 text-xs font-bold transition-all touch-btn flex items-center justify-center gap-2">
+                        class="text-[11px] font-bold text-stone-500 hover:text-choc-main underline flex items-center gap-1">
                         <i class="fa-solid fa-rotate-left"></i>
-                        <span>Limpar Seleção</span>
+                        <span>Zerar seleção</span>
                     </button>
+                </div>
+                <p class="text-xs text-stone-600 mb-3.5">Você pode pedir 1, 2, 3 ou mais caixas! Escolha quantas desejar:</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <!-- Caixa Degustação -->
+                    <div class="p-3.5 bg-white rounded-xl border-2 border-rose-gold/40 shadow-xs flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-xs sm:text-sm text-choc-main">Caixa Degustação</span>
+                                <span class="text-xs font-bold text-rose-accent bg-rose-light px-2 py-0.5 rounded border border-rose-gold/30">R$ 18,80</span>
+                            </div>
+                            <p class="text-[11px] text-stone-500 mb-3">8 doces (1 de cada sabor do festival)</p>
+                        </div>
+                        
+                        <div class="flex items-center justify-between pt-2 border-t border-stone-100">
+                            <span class="text-[11px] font-bold text-stone-500">Qtd de Caixas:</span>
+                            <div class="flex items-center gap-2">
+                                <button type="button" onclick="changeBoxQty('degustacao', -1)" 
+                                    class="w-8 h-8 rounded-lg bg-stone-100 text-choc-main font-bold text-sm flex items-center justify-center border border-stone-300 hover:bg-stone-200 active:scale-95 transition-all touch-btn">
+                                    <i class="fa-solid fa-minus text-xs"></i>
+                                </button>
+                                <span id="boxDegustacaoCountDisplay" class="w-6 text-center font-extrabold text-sm text-choc-main">0</span>
+                                <button type="button" onclick="changeBoxQty('degustacao', 1)" 
+                                    class="px-3 py-1.5 rounded-lg bg-rose-accent text-white font-bold text-xs hover:bg-choc-main active:scale-95 transition-all touch-btn flex items-center gap-1 shadow-xs">
+                                    <i class="fa-solid fa-plus text-xs"></i>
+                                    <span>Adicionar Caixa</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Caixa Festival -->
+                    <div class="p-3.5 bg-white rounded-xl border-2 border-rose-accent/70 shadow-xs flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-xs sm:text-sm text-choc-main">Caixa Festival</span>
+                                <span class="text-xs font-bold text-rose-accent bg-rose-light px-2 py-0.5 rounded border border-rose-gold/30">R$ 37,60</span>
+                            </div>
+                            <p class="text-[11px] text-stone-500 mb-3">16 doces (2 de cada sabor do festival)</p>
+                        </div>
+                        
+                        <div class="flex items-center justify-between pt-2 border-t border-stone-100">
+                            <span class="text-[11px] font-bold text-stone-500">Qtd de Caixas:</span>
+                            <div class="flex items-center gap-2">
+                                <button type="button" onclick="changeBoxQty('festival', -1)" 
+                                    class="w-8 h-8 rounded-lg bg-stone-100 text-choc-main font-bold text-sm flex items-center justify-center border border-stone-300 hover:bg-stone-200 active:scale-95 transition-all touch-btn">
+                                    <i class="fa-solid fa-minus text-xs"></i>
+                                </button>
+                                <span id="boxFestivalCountDisplay" class="w-6 text-center font-extrabold text-sm text-choc-main">0</span>
+                                <button type="button" onclick="changeBoxQty('festival', 1)" 
+                                    class="px-3 py-1.5 rounded-lg bg-choc-main text-white font-bold text-xs hover:bg-choc-light active:scale-95 transition-all touch-btn flex items-center gap-1 shadow-xs">
+                                    <i class="fa-solid fa-plus text-xs"></i>
+                                    <span>Adicionar Caixa</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -420,208 +460,15 @@
         const quantities = {};
         sweetsData.forEach(s => quantities[s.id] = 0);
 
+        let boxDegustacaoCount = 0;
+        let boxFestivalCount = 0;
         let activeComboName = null;
         let deliveryFee = 0.00;
         let isPickup = false;
 
         // Handle Typing and Intelligent Suggestions for Neighborhood
-        function handleNeighborhoodTyping() {
-            const inputVal = document.getElementById('neighborhoodInput').value;
-            const suggestionsList = document.getElementById('suggestionsList');
-            const searchNorm = inputVal.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
-
-            const matches = sinopNeighborhoods.filter(item => {
-                const nameNorm = item.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                return nameNorm.includes(searchNorm);
-            });
-
-            if (matches.length === 0 && searchNorm.length > 0) {
-                suggestionsList.innerHTML = `
-                    <div onclick="selectNeighborhoodCustom()" class="p-3 hover:bg-stone-50 cursor-pointer text-xs font-semibold text-stone-700 flex justify-between items-center">
-                        <span>${inputVal} (Outro Bairro de Sinop)</span>
-                        <span class="text-amber-700 font-bold bg-amber-50 px-2 py-0.5 rounded text-[11px]">A combinar</span>
-                    </div>
-                `;
-                suggestionsList.classList.remove('hidden');
-                return;
-            }
-
-            if (matches.length > 0) {
-                let listHtml = '';
-                matches.forEach(item => {
-                    const feeDisplay = item.fee !== null ? `Taxa: R$ ${item.fee.toFixed(2).replace('.', ',')}` : 'A combinar';
-                    const feeBadgeColor = item.fee !== null ? 'bg-emerald-50 text-emerald-800' : 'bg-amber-50 text-amber-800';
-                    
-                    // Escape single quotes for onclick inline string
-                    const safeName = item.name.replace(/'/g, "\\'");
-                    listHtml += `
-                        <div onclick="selectNeighborhoodByName('${safeName}')" class="p-3 hover:bg-rose-light/80 cursor-pointer flex justify-between items-center text-xs font-medium transition-colors">
-                            <span class="font-bold text-choc-main">${item.name}</span>
-                            <span class="font-extrabold ${feeBadgeColor} px-2.5 py-1 rounded-lg text-[11px] border border-stone-200">${feeDisplay}</span>
-                        </div>
-                    `;
-                });
-                suggestionsList.innerHTML = listHtml;
-                suggestionsList.classList.remove('hidden');
-            } else {
-                suggestionsList.classList.add('hidden');
-            }
-        }
-
-        // Select Neighborhood by Object/Name
-        function selectNeighborhoodByName(neighborhoodName) {
-            const found = sinopNeighborhoods.find(n => n.name === neighborhoodName);
-            if (found) {
-                selectedNeighborhoodObj = found;
-                document.getElementById('neighborhoodInput').value = found.name;
-                
-                if (found.fee !== null) {
-                    deliveryFee = found.fee;
-                    document.getElementById('badgeFeeText').innerText = `+ R$ ${found.fee.toFixed(2).replace('.', ',')}`;
-                } else {
-                    deliveryFee = 0;
-                    document.getElementById('badgeFeeText').innerText = `A combinar`;
-                }
-
-                document.getElementById('selectedNeighborhoodBadge').classList.remove('hidden');
-            } else {
-                selectNeighborhoodCustom();
-            }
-
-            document.getElementById('suggestionsList').classList.add('hidden');
-            updateSummary();
-        }
-
-        function selectNeighborhoodCustom() {
-            const currentText = document.getElementById('neighborhoodInput').value.trim() || 'Outro Bairro';
-            selectedNeighborhoodObj = { name: currentText, fee: null };
-            deliveryFee = 0;
-            document.getElementById('badgeFeeText').innerText = `A combinar`;
-            document.getElementById('selectedNeighborhoodBadge').classList.remove('hidden');
-            document.getElementById('suggestionsList').classList.add('hidden');
-            updateSummary();
-        }
-
-        // Hide suggestions when clicking outside
-        document.addEventListener('click', function(e) {
-            const container = document.getElementById('neighborhoodContainer');
-            if (container && !container.contains(e.target)) {
-                const suggestionsList = document.getElementById('suggestionsList');
-                if (suggestionsList) suggestionsList.classList.add('hidden');
-            }
-        });
-
-        // CEP Auto-Fill Function via ViaCEP API
-        function searchCEP() {
-            const cepInput = document.getElementById('cepInput');
-            const cepStatus = document.getElementById('cepStatus');
-            const cleanCEP = cepInput.value.replace(/\D/g, '');
-
-            if (cleanCEP.length !== 8) {
-                cepStatus.innerText = 'Digite um CEP válido com 8 números.';
-                cepStatus.className = 'text-[11px] text-amber-700 mt-1 block font-medium';
-                return;
-            }
-
-            cepStatus.innerText = 'Buscando endereço...';
-            cepStatus.className = 'text-[11px] text-stone-500 mt-1 block font-medium';
-
-            fetch(`https://viacep.com.br/ws/${cleanCEP}/json/`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.erro) {
-                        cepStatus.innerText = 'CEP não encontrado. Digite a rua e o bairro manualmente.';
-                        cepStatus.className = 'text-[11px] text-red-600 mt-1 block font-medium';
-                    } else {
-                        if (data.logradouro) {
-                            document.getElementById('deliveryStreet').value = data.logradouro;
-                        }
-                        
-                        const returnedBairro = data.bairro || '';
-                        
-                        if (returnedBairro) {
-                            const searchNorm = returnedBairro.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
-                            
-                            // Busca bairro correspondente na lista de Sinop
-                            const matched = sinopNeighborhoods.find(item => {
-                                const nameNorm = item.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                                const mainNamePart = nameNorm.split('/')[0].trim();
-                                return nameNorm.includes(searchNorm) || searchNorm.includes(mainNamePart);
-                            });
-
-                            if (matched) {
-                                selectNeighborhoodByName(matched.name);
-                            } else {
-                                document.getElementById('neighborhoodInput').value = returnedBairro;
-                                selectNeighborhoodCustom();
-                            }
-                        }
-                        
-                        cepStatus.innerText = `Endereço localizado: ${data.logradouro ? data.logradouro + ', ' : ''}${returnedBairro ? 'Bairro ' + returnedBairro : ''}`;
-                        cepStatus.className = 'text-[11px] text-emerald-700 mt-1 block font-bold';
-                        updateSummary();
-                    }
-                })
-                .catch(() => {
-                    cepStatus.innerText = 'Não foi possível buscar o CEP no momento. Preencha manualmente a rua e o bairro.';
-                    cepStatus.className = 'text-[11px] text-stone-500 mt-1 block';
-                });
-        }
-
-        // Render Sweet Selection Cards
-        function renderSweets() {
-            const tradGrid = document.getElementById('tradicionaisGrid');
-            const espGrid = document.getElementById('especiaisGrid');
-
-            tradGrid.innerHTML = '';
-            espGrid.innerHTML = '';
-
-            sweetsData.forEach(sweet => {
-                const cardHtml = `
-                    <div class="bg-white rounded-xl p-3.5 border border-stone-300 shadow-xs flex flex-col justify-between hover:border-choc-main transition-all">
-                        <div>
-                            <div class="flex items-start justify-between gap-1 mb-1">
-                                <h4 class="font-bold text-choc-main text-sm sm:text-base">${sweet.name}</h4>
-                                <span class="font-bold text-xs text-choc-light bg-stone-100 px-2 py-0.5 rounded border border-stone-200 shrink-0">
-                                    R$ ${sweet.price.toFixed(2).replace('.', ',')}
-                                </span>
-                            </div>
-                            <p class="text-xs text-stone-500 mb-3 leading-tight">${sweet.desc}</p>
-                        </div>
-                        
-                        <!-- Simple Large Quantity Selector Buttons -->
-                        <div class="flex items-center justify-between pt-2 border-t border-stone-100">
-                            <span class="text-[11px] font-bold text-stone-400 uppercase">Qtd:</span>
-                            <div class="flex items-center gap-1.5">
-                                <button type="button" onclick="changeQty('${sweet.id}', -1)" 
-                                    class="w-9 h-9 rounded-lg bg-stone-100 text-choc-main font-extrabold text-base flex items-center justify-center border border-stone-300 hover:bg-stone-200 active:scale-95 transition-all touch-btn">
-                                    <i class="fa-solid fa-minus text-xs"></i>
-                                </button>
-                                <span id="qty-${sweet.id}" class="w-8 text-center font-extrabold text-base text-choc-main">0</span>
-                                <button type="button" onclick="changeQty('${sweet.id}', 1)" 
-                                    class="w-9 h-9 rounded-lg bg-choc-main text-white font-extrabold text-base flex items-center justify-center hover:bg-choc-light active:scale-95 transition-all touch-btn">
-                                    <i class="fa-solid fa-plus text-xs"></i>
-                                </button>
-                                <button type="button" onclick="changeQty('${sweet.id}', 5)" 
-                                    class="ml-1 px-2 py-1.5 rounded-lg bg-rose-light text-rose-accent font-bold text-xs border border-rose-gold/40 hover:bg-rose-gold hover:text-white transition-colors">
-                                    +5
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-                if (sweet.category === 'Tradicional') {
-                    tradGrid.innerHTML += cardHtml;
-                } else {
-                    espGrid.innerHTML += cardHtml;
-                }
-            });
-        }
-
-        // Change quantity function
+        // Change quantity for individual sweets
         function changeQty(sweetId, delta) {
-            activeComboName = null;
             const current = quantities[sweetId] || 0;
             const updated = Math.max(0, current + delta);
             quantities[sweetId] = updated;
@@ -631,31 +478,68 @@
             updateSummary();
         }
 
-        // Preset combo selection (1 de cada / 2 de cada)
-        function selectPresetBox(multiplier) {
-            if (multiplier === 1) {
-                activeComboName = 'Caixa Degustação (8 doces)';
-            } else if (multiplier === 2) {
-                activeComboName = 'Caixa Festival (16 doces)';
+        // Change Box Quantity (+1 / -1) for preset boxes
+        function changeBoxQty(type, delta) {
+            if (type === 'degustacao') {
+                boxDegustacaoCount = Math.max(0, boxDegustacaoCount + delta);
+            } else if (type === 'festival') {
+                boxFestivalCount = Math.max(0, boxFestivalCount + delta);
             }
 
+            // Update box count displays
+            const degEl = document.getElementById('boxDegustacaoCountDisplay');
+            if (degEl) degEl.innerText = boxDegustacaoCount;
+
+            const festEl = document.getElementById('boxFestivalCountDisplay');
+            if (festEl) festEl.innerText = boxFestivalCount;
+
+            // Recalculate sweet quantities based on box counts
             sweetsData.forEach(s => {
-                quantities[s.id] = multiplier;
+                quantities[s.id] = (boxDegustacaoCount * 1) + (boxFestivalCount * 2);
                 const el = document.getElementById(`qty-${s.id}`);
-                if (el) el.innerText = multiplier;
+                if (el) el.innerText = quantities[s.id];
             });
+
+            updateActiveComboName();
             updateSummary();
 
-            // Rola suavemente para a seção de dados e entrega
-            const stepDetails = document.getElementById('step-details');
-            if (stepDetails) {
-                stepDetails.scrollIntoView({ behavior: 'smooth' });
+            // Rola suavemente para a seção de dados e entrega se tiver adicionado ao menos 1 caixa
+            if (delta > 0) {
+                const stepDetails = document.getElementById('step-details');
+                if (stepDetails) {
+                    stepDetails.scrollIntoView({ behavior: 'smooth' });
+                }
             }
         }
 
-        // Clear all quantities
+        function updateActiveComboName() {
+            const comboParts = [];
+            if (boxDegustacaoCount > 0) {
+                comboParts.push(`${boxDegustacaoCount}x Caixa Degustação (${boxDegustacaoCount * 8} doces)`);
+            }
+            if (boxFestivalCount > 0) {
+                comboParts.push(`${boxFestivalCount}x Caixa Festival (${boxFestivalCount * 16} doces)`);
+            }
+
+            if (comboParts.length > 0) {
+                activeComboName = comboParts.join(' + ');
+            } else {
+                activeComboName = null;
+            }
+        }
+
+        // Clear all quantities and box counters
         function clearAllQuantities() {
+            boxDegustacaoCount = 0;
+            boxFestivalCount = 0;
             activeComboName = null;
+
+            const degEl = document.getElementById('boxDegustacaoCountDisplay');
+            if (degEl) degEl.innerText = '0';
+
+            const festEl = document.getElementById('boxFestivalCountDisplay');
+            if (festEl) festEl.innerText = '0';
+
             sweetsData.forEach(s => {
                 quantities[s.id] = 0;
                 const el = document.getElementById(`qty-${s.id}`);
@@ -919,6 +803,180 @@
             renderSweets();
             updateSummary();
         };
+
+        // Render Sweets Grid Dynamically
+        function renderSweets() {
+            const tradGrid = document.getElementById('tradicionaisGrid');
+            const espGrid = document.getElementById('especiaisGrid');
+            
+            if (!tradGrid || !espGrid) return;
+            
+            let tradHtml = '';
+            let espHtml = '';
+
+            sweetsData.forEach(sweet => {
+                const qty = quantities[sweet.id] || 0;
+                const cardHtml = `
+                    <div class="p-3.5 bg-white rounded-xl border border-stone-200 shadow-2xs flex items-center justify-between gap-2 hover:border-rose-gold/50 transition-colors">
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-1.5 flex-wrap">
+                                <span class="font-bold text-xs sm:text-sm text-choc-dark truncate">${sweet.name}</span>
+                                <span class="text-[11px] font-extrabold text-rose-accent bg-rose-light px-2 py-0.5 rounded border border-rose-gold/20">
+                                    R$ ${sweet.price.toFixed(2).replace('.', ',')}
+                                </span>
+                            </div>
+                            <p class="text-[11px] text-stone-500 mt-0.5 truncate">${sweet.desc}</p>
+                        </div>
+                        <div class="flex items-center gap-1.5 shrink-0">
+                            <button type="button" onclick="changeQty('${sweet.id}', -1)" 
+                                class="w-8 h-8 rounded-lg bg-stone-100 text-choc-dark font-bold text-xs flex items-center justify-center border border-stone-300 hover:bg-stone-200 active:scale-95 transition-all touch-btn">
+                                <i class="fa-solid fa-minus text-[10px]"></i>
+                            </button>
+                            <span id="qty-${sweet.id}" class="w-6 text-center font-extrabold text-xs text-choc-main">${qty}</span>
+                            <button type="button" onclick="changeQty('${sweet.id}', 1)" 
+                                class="w-8 h-8 rounded-lg bg-choc-main text-white font-bold text-xs flex items-center justify-center border border-choc-main hover:bg-choc-light active:scale-95 transition-all touch-btn shadow-2xs">
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                if (sweet.category === 'Tradicional') {
+                    tradHtml += cardHtml;
+                } else {
+                    espHtml += cardHtml;
+                }
+            });
+
+            tradGrid.innerHTML = tradHtml;
+            espGrid.innerHTML = espHtml;
+        }
+
+        // Handle typing and intelligent suggestions for neighborhood
+        function handleNeighborhoodTyping() {
+            const input = document.getElementById('neighborhoodInput');
+            const suggestions = document.getElementById('suggestionsList');
+            const filter = input.value.toLowerCase().trim();
+
+            if (!filter) {
+                suggestions.classList.add('hidden');
+                return;
+            }
+
+            const matches = sinopNeighborhoods.filter(n => n.name.toLowerCase().includes(filter));
+
+            if (matches.length === 0) {
+                suggestions.classList.add('hidden');
+                return;
+            }
+
+            let html = '';
+            matches.forEach(item => {
+                const feeText = item.fee !== null ? `Taxa: R$ ${item.fee.toFixed(2).replace('.', ',')}` : 'A combinar';
+                const feeClass = item.fee !== null ? 'text-choc-main bg-stone-100' : 'text-amber-800 bg-amber-50';
+                
+                // Escape single quotes for inline handler
+                const safeName = item.name.replace(/'/g, "\\'");
+
+                html += `
+                    <div onclick="selectNeighborhood('${safeName}', ${item.fee})" 
+                        class="p-3 hover:bg-rose-light/80 cursor-pointer flex items-center justify-between text-xs sm:text-sm border-b border-stone-100 last:border-0 transition-colors">
+                        <span class="font-medium text-choc-dark">${item.name}</span>
+                        <span class="text-[11px] font-bold px-2 py-0.5 rounded-md ${feeClass}">${feeText}</span>
+                    </div>
+                `;
+            });
+
+            suggestions.innerHTML = html;
+            suggestions.classList.remove('hidden');
+        }
+
+        function selectNeighborhood(name, fee) {
+            const input = document.getElementById('neighborhoodInput');
+            const suggestions = document.getElementById('suggestionsList');
+            const badge = document.getElementById('selectedNeighborhoodBadge');
+            const badgeText = document.getElementById('badgeFeeText');
+
+            input.value = name;
+            suggestions.classList.add('hidden');
+
+            selectedNeighborhoodObj = { name: name, fee: fee };
+
+            if (fee !== null && fee > 0) {
+                badgeText.innerText = `Taxa: R$ ${fee.toFixed(2).replace('.', ',')}`;
+                badge.classList.remove('hidden');
+            } else if (fee === 0) {
+                badgeText.innerText = `Sem Taxa (R$ 0,00)`;
+                badge.classList.remove('hidden');
+            } else {
+                badgeText.innerText = `A combinar`;
+                badge.classList.remove('hidden');
+            }
+
+            updateDeliveryFee();
+        }
+
+        // CEP Automatic Lookup
+        function searchCEP() {
+            const cepInput = document.getElementById('cepInput');
+            const statusEl = document.getElementById('cepStatus');
+            const cep = cepInput.value.replace(/\D/g, '');
+
+            if (cep.length !== 8) {
+                statusEl.innerText = 'Por favor, digite um CEP válido com 8 dígitos.';
+                statusEl.className = 'text-[11px] text-red-600 font-semibold mt-1 block';
+                return;
+            }
+
+            statusEl.innerText = 'Buscando endereço...';
+            statusEl.className = 'text-[11px] text-choc-main font-semibold mt-1 block';
+
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.erro) {
+                        statusEl.innerText = 'CEP não encontrado. Por favor, digite o endereço manualmente.';
+                        statusEl.className = 'text-[11px] text-amber-700 font-semibold mt-1 block';
+                        return;
+                    }
+
+                    if (data.logradouro) {
+                        document.getElementById('deliveryStreet').value = data.logradouro;
+                    }
+
+                    if (data.bairro) {
+                        const bairroNome = data.bairro;
+                        document.getElementById('neighborhoodInput').value = bairroNome;
+                        
+                        // Check if neighborhood exists in our database
+                        const match = sinopNeighborhoods.find(n => n.name.toLowerCase().includes(bairroNome.toLowerCase()) || bairroNome.toLowerCase().includes(n.name.toLowerCase()));
+                        
+                        if (match) {
+                            selectNeighborhood(match.name, match.fee);
+                        } else {
+                            selectNeighborhood(bairroNome, null);
+                        }
+                    }
+
+                    statusEl.innerText = 'Endereço encontrado com sucesso!';
+                    statusEl.className = 'text-[11px] text-emerald-700 font-semibold mt-1 block';
+                    
+                    document.getElementById('deliveryNumber').focus();
+                })
+                .catch(() => {
+                    statusEl.innerText = 'Não foi possível buscar o CEP no momento. Preencha manualmente.';
+                    statusEl.className = 'text-[11px] text-red-600 font-semibold mt-1 block';
+                });
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const container = document.getElementById('neighborhoodContainer');
+            const suggestions = document.getElementById('suggestionsList');
+            if (container && suggestions && !container.contains(e.target)) {
+                suggestions.classList.add('hidden');
+            }
+        });
     </script>
 </body>
 </html>
