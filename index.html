@@ -418,16 +418,16 @@
     <script>
         const sweetsData = [
             // Tradicionais
-            { id: 'brigadeiro', name: 'Brigadeiro', category: 'Tradicional', price: 2.50, desc: 'Brigadeiro gourmet com granulado nobre' },
-            { id: 'beijinho', name: 'Beijinho', category: 'Tradicional', price: 2.00, desc: 'Doce de coco ralado com textura suave' },
-            { id: 'churros', name: 'Brigadeiro de Churros', category: 'Tradicional', price: 1.90, desc: 'Massa com canela e recheio de doce de leite' },
-            { id: 'ninho_nutella', name: 'Ninho com Nutella', category: 'Tradicional', price: 2.10, desc: 'Massa de Leite Ninho recheada com Nutella' },
+            { id: 'brigadeiro', name: 'Brigadeiro', category: 'Tradicional', price: 2.50 },
+            { id: 'beijinho', name: 'Beijinho', category: 'Tradicional', price: 2.00 },
+            { id: 'churros', name: 'Brigadeiro de Churros', category: 'Tradicional', price: 1.90 },
+            { id: 'ninho_nutella', name: 'Ninho com Nutella', category: 'Tradicional', price: 2.10 },
             
             // Especiais
-            { id: 'ovomaltine', name: 'Bombom Ovomaltine', category: 'Especial', price: 2.70, desc: 'Creme crocante de chocolate com Ovomaltine' },
-            { id: 'surpresa_uva', name: 'Surpresa de Uva', category: 'Especial', price: 2.70, desc: 'Uva verde fresca envolvida em brigadeiro branco' },
-            { id: 'ourico', name: 'Ouriço', category: 'Especial', price: 2.40, desc: 'Docinho artesanal envolto em castanhas selecionadas' },
-            { id: 'ferrero', name: 'Brigadeiro Ferrero Rocher', category: 'Especial', price: 2.50, desc: 'Combinação fina de avelã e chocolate nobre' }
+            { id: 'ovomaltine', name: 'Bombom Ovomaltine', category: 'Especial', price: 2.70 },
+            { id: 'surpresa_uva', name: 'Surpresa de Uva', category: 'Especial', price: 2.70 },
+            { id: 'ourico', name: 'Ouriço', category: 'Especial', price: 2.40 },
+            { id: 'ferrero', name: 'Brigadeiro Ferrero Rocher', category: 'Especial', price: 2.50 }
         ];
 
         // Sinop Neighborhoods Database & Fees
@@ -466,7 +466,6 @@
         let deliveryFee = 0.00;
         let isPickup = false;
 
-        // Handle Typing and Intelligent Suggestions for Neighborhood
         // Change quantity for individual sweets
         function changeQty(sweetId, delta) {
             const current = quantities[sweetId] || 0;
@@ -818,14 +817,11 @@
                 const qty = quantities[sweet.id] || 0;
                 const cardHtml = `
                     <div class="p-3.5 bg-white rounded-xl border border-stone-200 shadow-2xs flex items-center justify-between gap-2 hover:border-rose-gold/50 transition-colors">
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center gap-1.5 flex-wrap">
-                                <span class="font-bold text-xs sm:text-sm text-choc-dark truncate">${sweet.name}</span>
-                                <span class="text-[11px] font-extrabold text-rose-accent bg-rose-light px-2 py-0.5 rounded border border-rose-gold/20">
-                                    R$ ${sweet.price.toFixed(2).replace('.', ',')}
-                                </span>
-                            </div>
-                            <p class="text-[11px] text-stone-500 mt-0.5 truncate">${sweet.desc}</p>
+                        <div class="flex-1 min-w-0 flex items-center gap-2 flex-wrap">
+                            <span class="font-bold text-xs sm:text-sm text-choc-dark truncate">${sweet.name}</span>
+                            <span class="text-[11px] font-extrabold text-rose-accent bg-rose-light px-2 py-0.5 rounded border border-rose-gold/20">
+                                R$ ${sweet.price.toFixed(2).replace('.', ',')}
+                            </span>
                         </div>
                         <div class="flex items-center gap-1.5 shrink-0">
                             <button type="button" onclick="changeQty('${sweet.id}', -1)" 
