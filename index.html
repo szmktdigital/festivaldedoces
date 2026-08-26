@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1º Festival de Doces - Rita Joice</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'choc-dark': '#1c100b',
+                        'choc-main': '#2d1b14',
+                        'choc-light': '#4a3328',
+                        'rose-gold': '#c89382',
+                        'rose-light': '#fdf8f5',
+                        'rose-accent': '#d48372',
+                        'cream-bg': '#fcf9f5',
+                        'sand-card': '#f7f2ec'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        display: ['Cormorant Garamond', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(28, 16, 11, 0.85) 0%, rgba(45, 27, 20, 0.96) 100%);
+        }
+        .luxury-card {
+            background: #ffffff;
+            border: 1px solid #e8dec8;
+        }
+        .touch-btn {
+            min-height: 48px;
+            touch-action: manipulation;
+        }
+    </style>
+</head>
+<body class="bg-cream-bg text-choc-dark min-h-screen flex flex-col antialiased selection:bg-rose-gold selection:text-white">
+
+    <!-- HERO HEADER -->
+    <header class="relative bg-choc-dark text-white overflow-hidden border-b-2 border-rose-gold/30">
+        <div class="absolute inset-0 z-0 opacity-30 mix-blend-luminosity scale-105 transform">
+            <img src="https://images.unsplash.com/photo-1579372786545-d24232daf58c?auto=format&fit=crop&w=1600&q=80" 
+                 alt="Doces Gourmet de Alta Confeitaria" 
+                 class="w-full h-full object-cover object-center"
+                 onerror="this.src='https://placehold.co/1600x600/2d1b14/c89382?text=Festival+de+Doces'">
+        </div>
+        
+        <div class="absolute inset-0 z-0 hero-overlay"></div>
+
+        <div class="relative z-10 max-w-3xl mx-auto px-4 py-8 sm:py-14 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-gold/20 border border-rose-gold/40 text-rose-gold text-xs sm:text-sm font-bold tracking-wider uppercase mb-3">
+                <i class="fa-solid fa-star text-xs"></i>
+                <span>Edição Especial &bull; Confeitaria Artesanal</span>
+            </div>
+
+            <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white mb-1">
+                1º Festival de Doces
+            </h1>
+            <p class="font-display text-2xl sm:text-3xl text-rose-gold italic font-normal mb-4">
+                por Rita Joice
+            </p>
+
+            <p class="text-stone-200 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed font-normal bg-black/40 p-3.5 rounded-xl border border-white/10">
+                Monte seu pedido em poucos passos: escolha os doces, preencha seus dados de entrega ou escolha retirar sem taxa, e envie diretamente pelo WhatsApp!
+            </p>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-3xl w-full mx-auto px-4 py-6 sm:py-10 space-y-6 sm:space-y-8">
+
+        <!-- STEP 1: SELECT SWEETS -->
+        <section id="step-sweets" class="luxury-card rounded-2xl p-5 sm:p-7 shadow-sm">
+            <div class="flex items-center justify-between pb-4 border-b border-stone-200 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-full bg-choc-main text-rose-gold font-serif text-base font-bold flex items-center justify-center shrink-0">1</span>
+                    <div>
+                        <h2 class="text-base sm:text-xl font-serif font-bold text-choc-main">Escolha seus Doces</h2>
+                        <p class="text-xs text-stone-500">Selecione uma caixa pronta ou monte sua quantidade ideal</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Combo Boxes -->
+            <div class="bg-rose-light/70 rounded-xl p-4 border border-rose-gold/30 mb-6">
+                <h3 class="text-xs sm:text-sm font-bold text-choc-main uppercase tracking-wider mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-box-open text-rose-accent"></i>
+                    <span>Caixas Prontas (Mais Prático)</span>
+                </h3>
+                <p class="text-xs text-stone-600 mb-3">Clique para preencher os doces automaticamente:</p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                    <button type="button" onclick="selectPresetBox(1)" 
+                        class="p-3 bg-white rounded-xl border border-rose-gold/40 hover:border-choc-main text-left shadow-xs transition-all touch-btn flex flex-col justify-center">
+                        <div class="flex justify-between items-center mb-0.5">
+                            <span class="font-bold text-xs text-choc-main">Caixa Degustação</span>
+                            <span class="text-[11px] font-bold text-rose-accent bg-rose-light px-1.5 py-0.5 rounded">R$ 18,80</span>
+                        </div>
+                        <span class="text-[11px] text-stone-500">8 doces (1 de cada sabor)</span>
+                    </button>
+                    <button type="button" onclick="selectPresetBox(2)" 
+                        class="p-3 bg-white rounded-xl border-2 border-rose-accent/70 hover:border-choc-main text-left shadow-xs transition-all touch-btn flex flex-col justify-center">
+                        <div class="flex justify-between items-center mb-0.5">
+                            <span class="font-bold text-xs text-choc-main">Caixa Festival</span>
+                            <span class="text-[11px] font-bold text-rose-accent bg-rose-light px-1.5 py-0.5 rounded">R$ 37,60</span>
+                        </div>
+                        <span class="text-[11px] text-stone-500">16 doces (2 de cada sabor)</span>
+                    </button>
+                    <button type="button" onclick="clearAllQuantities()" 
+                        class="p-3 bg-stone-100 rounded-xl border border-stone-300 hover:bg-stone-200 text-center text-stone-600 text-xs font-bold transition-all touch-btn flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        <span>Limpar Seleção</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sweets Catalogue Grids -->
+            <div class="space-y-6">
+                <!-- Tradicionais -->
+                <div>
+                    <div class="flex items-center justify-between mb-3 pb-1 border-b border-stone-100">
+                        <h3 class="font-serif font-bold text-choc-main text-sm sm:text-base flex items-center gap-2">
+                            <i class="fa-solid fa-cookie text-rose-gold"></i>
+                            <span>Doces Tradicionais</span>
+                        </h3>
+                        <span class="text-xs font-bold text-stone-500 bg-stone-100 px-2.5 py-1 rounded-md">A partir de R$ 1,90</span>
+                    </div>
+                    <div id="tradicionaisGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+                </div>
+
+                <!-- Especiais -->
+                <div>
+                    <div class="flex items-center justify-between mb-3 pb-1 border-b border-stone-100">
+                        <h3 class="font-serif font-bold text-choc-main text-sm sm:text-base flex items-center gap-2">
+                            <i class="fa-solid fa-crown text-rose-gold"></i>
+                            <span>Doces Especiais</span>
+                        </h3>
+                        <span class="text-xs font-bold text-stone-500 bg-stone-100 px-2.5 py-1 rounded-md">A partir de R$ 2,40</span>
+                    </div>
+                    <div id="especiaisGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 2: CUSTOMER DETAILS & SHIPPING -->
+        <section id="step-details" class="luxury-card rounded-2xl p-5 sm:p-7 shadow-sm space-y-6">
+            <div class="flex items-center gap-3 pb-4 border-b border-stone-200">
+                <span class="w-8 h-8 rounded-full bg-choc-main text-rose-gold font-serif text-base font-bold flex items-center justify-center shrink-0">2</span>
+                <div>
+                    <h2 class="text-base sm:text-xl font-serif font-bold text-choc-main">Seus Dados e Entrega</h2>
+                    <p class="text-xs text-stone-500">Informe seu nome e como prefere receber seus doces</p>
+                </div>
+            </div>
+
+            <!-- Customer Name -->
+            <div>
+                <label for="customerName" class="block text-xs font-bold text-choc-main uppercase tracking-wider mb-1.5">
+                    Seu Nome Completo *
+                </label>
+                <input type="text" id="customerName" placeholder="Digite seu nome completo aqui..." 
+                    class="w-full px-4 py-3.5 rounded-xl border-2 border-stone-300 focus:border-choc-main focus:ring-0 outline-none transition-all text-choc-dark text-sm sm:text-base bg-stone-50/50 font-medium placeholder:text-stone-400 touch-btn"
+                    oninput="updateSummary()">
+            </div>
+
+            <!-- Delivery vs Pickup Selection -->
+            <div>
+                <label class="block text-xs font-bold text-choc-main uppercase tracking-wider mb-2">
+                    Forma de Recebimento *
+                </label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <!-- Option Entrega -->
+                    <label id="optionEntregaLabel" onclick="toggleFulfillment('entrega')" class="relative flex items-center gap-3 p-4 rounded-xl border-2 border-choc-main bg-rose-light/60 cursor-pointer transition-all touch-btn">
+                        <input type="radio" name="fulfillment" value="entrega" checked class="sr-only">
+                        <div id="radioEntregaCheck" class="w-5 h-5 rounded-full border-2 border-choc-main flex items-center justify-center bg-white shrink-0">
+                            <div class="w-2.5 h-2.5 rounded-full bg-choc-main"></div>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-xs sm:text-sm text-choc-main">Entrega em Domicílio</span>
+                            <span class="block text-[11px] text-stone-500">Receba no seu endereço em Sinop</span>
+                        </div>
+                    </label>
+
+                    <!-- Option Retirada -->
+                    <label id="optionRetiradaLabel" onclick="toggleFulfillment('retirada')" class="relative flex items-center gap-3 p-4 rounded-xl border-2 border-stone-300 bg-white cursor-pointer transition-all hover:border-stone-400 touch-btn">
+                        <input type="radio" name="fulfillment" value="retirada" class="sr-only">
+                        <div id="radioRetiradaCheck" class="w-5 h-5 rounded-full border-2 border-stone-400 flex items-center justify-center bg-white shrink-0">
+                            <div class="w-2.5 h-2.5 rounded-full bg-transparent"></div>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-xs sm:text-sm text-choc-main">Retirada no Endereço da Rita</span>
+                            <span class="block text-[11px] text-emerald-700 font-bold">Sem taxa de entrega (R$ 0,00)</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Delivery Details Box -->
+            <div id="deliveryDetailsSection" class="space-y-4 pt-2">
+                <div class="bg-stone-50 p-3.5 rounded-xl border border-stone-200">
+                    <label for="cepInput" class="block text-xs font-bold text-choc-main mb-1">
+                        Buscar Endereço por CEP (Opção Automática)
+                    </label>
+                    <div class="flex gap-2">
+                        <input type="text" id="cepInput" placeholder="Ex: 78550-000" maxlength="9" 
+                            class="flex-1 px-3 py-2 rounded-lg border border-stone-300 focus:border-choc-main outline-none text-xs sm:text-sm font-medium">
+                        <button type="button" onclick="searchCEP()" 
+                            class="px-4 py-2 bg-choc-main text-white font-bold text-xs rounded-lg hover:bg-choc-light transition-colors shrink-0">
+                            Buscar CEP
+                        </button>
+                    </div>
+                    <span id="cepStatus" class="text-[11px] text-stone-500 mt-1 block"></span>
+                </div>
+
+                <!-- Street and Number Inputs -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div class="sm:col-span-2">
+                        <label for="deliveryStreet" class="block text-xs font-bold text-choc-main mb-1">Rua / Avenida *</label>
+                        <input type="text" id="deliveryStreet" placeholder="Ex: Rua das Acacias" 
+                            class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 focus:border-choc-main outline-none text-xs sm:text-sm bg-white font-medium"
+                            oninput="updateSummary()">
+                    </div>
+                    <div>
+                        <label for="deliveryNumber" class="block text-xs font-bold text-choc-main mb-1">Número *</label>
+                        <input type="text" id="deliveryNumber" placeholder="Ex: 123" 
+                            class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 focus:border-choc-main outline-none text-xs sm:text-sm bg-white font-medium"
+                            oninput="updateSummary()">
+                    </div>
+                </div>
+
+                <!-- Single Smart Neighborhood Field with Auto-Suggestions -->
+                <div id="neighborhoodContainer" class="relative space-y-1 pt-1">
+                    <label for="neighborhoodInput" class="block text-xs font-bold text-choc-main mb-1">
+                        Bairro em Sinop - MT (Para calcular a taxa de entrega) *
+                    </label>
+
+                    <div class="relative">
+                        <input type="text" id="neighborhoodInput" 
+                            placeholder="Comece a digitar seu bairro (ex: Parque das Araras, Itália, Maringá)..." 
+                            autocomplete="off"
+                            oninput="handleNeighborhoodTyping()"
+                            onfocus="handleNeighborhoodTyping()"
+                            class="w-full px-3.5 py-3 pr-24 rounded-xl border-2 border-stone-300 focus:border-choc-main outline-none text-xs sm:text-sm bg-white font-semibold text-choc-dark placeholder:font-normal placeholder:text-stone-400">
+                        
+                        <div id="selectedNeighborhoodBadge" class="hidden absolute right-2 top-1/2 -translate-y-1/2 bg-emerald-100 text-emerald-800 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-emerald-300 flex items-center gap-1 pointer-events-none">
+                            <i class="fa-solid fa-check text-emerald-600"></i>
+                            <span id="badgeFeeText">R$ 0,00</span>
+                        </div>
+                    </div>
+
+                    <!-- Intelligent Dropdown Suggestions List -->
+                    <div id="suggestionsList" class="hidden absolute left-0 right-0 top-full mt-1 bg-white rounded-xl shadow-xl border border-stone-300 max-h-56 overflow-y-auto z-40 divide-y divide-stone-100">
+                    </div>
+                </div>
+
+                <!-- Easy Pickup Suggestion -->
+                <div class="bg-amber-50 border border-amber-200/80 rounded-xl p-3 flex items-start gap-2.5 text-xs text-amber-900">
+                    <i class="fa-solid fa-lightbulb text-amber-600 text-sm mt-0.5 shrink-0"></i>
+                    <div>
+                        Preferir buscar e economizar na taxa? Você pode mudar para <button type="button" onclick="switchToPickup()" class="font-bold underline text-choc-main hover:text-black">Retirada sem taxa no endereço da Rita</button>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pickup Details Box -->
+            <div id="pickupDetailsSection" class="hidden pt-1">
+                <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-emerald-950 text-xs sm:text-sm">
+                    <div class="flex items-center gap-2 font-bold text-emerald-900 mb-1">
+                        <i class="fa-solid fa-location-dot text-emerald-600"></i>
+                        <span>Endereço de Retirada: Rua Dois, Jardim Nápoles</span>
+                    </div>
+                    <p class="text-emerald-800 leading-relaxed">
+                        Endereço de Retirada: <strong class="text-emerald-950 font-bold">Rua Dois, Jardim Nápoles - Sinop/MT</strong>.<br>
+                        Ao concluir o pedido, a Rita enviará a localização exata no mapa e confirmará os horários para você buscar seus doces com toda praticidade.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 3: ORDER SUMMARY & WHATSAPP BUTTON -->
+        <section id="step-summary" class="luxury-card rounded-2xl p-5 sm:p-7 shadow-md border-2 border-stone-300 space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-stone-200">
+                <div class="flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-full bg-choc-main text-rose-gold font-serif text-base font-bold flex items-center justify-center shrink-0">3</span>
+                    <h2 class="text-base sm:text-xl font-serif font-bold text-choc-main">Resumo do Seu Pedido</h2>
+                </div>
+                <i class="fa-solid fa-receipt text-stone-400 text-lg"></i>
+            </div>
+
+            <!-- Summary List -->
+            <div id="orderItemsSummary" class="space-y-1.5 text-sm divide-y divide-stone-100 min-h-[50px]">
+                <p class="text-stone-400 italic py-2 text-xs">Nenhum doce selecionado ainda. Escolha no Passo 1 para ver o resumo.</p>
+            </div>
+
+            <!-- Financial Totals -->
+            <div class="space-y-2 pt-3 border-t border-stone-200 text-xs sm:text-sm">
+                <div class="flex justify-between text-stone-600">
+                    <span>Quantidade Total de Doces:</span>
+                    <span id="summaryTotalItemsCount" class="font-bold text-choc-dark">0 unidades</span>
+                </div>
+                <div class="flex justify-between text-stone-600">
+                    <span>Subtotal dos Doces:</span>
+                    <span id="summarySubtotal" class="font-bold text-choc-dark">R$ 0,00</span>
+                </div>
+                <div class="flex justify-between text-stone-600">
+                    <span>Taxa de Envio:</span>
+                    <span id="summaryDeliveryFee" class="font-bold text-choc-dark">R$ 0,00</span>
+                </div>
+                <div class="flex justify-between text-base sm:text-xl font-extrabold text-choc-main pt-3 border-t-2 border-stone-300">
+                    <span>VALOR TOTAL ESTIMADO:</span>
+                    <span id="summaryTotal" class="text-emerald-700">R$ 0,00</span>
+                </div>
+            </div>
+
+            <!-- Main Direct WhatsApp Action Button -->
+            <div class="pt-3">
+                <button type="button" onclick="sendOrderToWhatsApp()" 
+                    class="w-full py-4 px-6 rounded-2xl bg-emerald-700 hover:bg-emerald-800 active:scale-[0.98] text-white font-bold text-base sm:text-lg shadow-lg flex items-center justify-center gap-3 transition-all touch-btn">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    <span>CONCLUIR PEDIDO NO WHATSAPP</span>
+                </button>
+                <p class="text-[11px] text-center text-stone-500 mt-2">
+                    <i class="fa-solid fa-lock text-stone-400 mr-1"></i> Sua mensagem será enviada pronta para a Rita no WhatsApp.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Floating Sticky Bar for Mobile Users -->
+    <div id="floatingBar" class="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-stone-300 p-3 shadow-2xl sm:hidden z-40 transition-transform duration-300 translate-y-full">
+        <div class="flex items-center justify-between gap-3">
+            <div>
+                <span class="text-[10px] text-stone-500 uppercase font-bold block">Total (<span id="mobileCount">0</span> doces)</span>
+                <span id="mobileTotal" class="text-base font-extrabold text-emerald-700">R$ 0,00</span>
+            </div>
+            <button type="button" onclick="scrollToSummary()" class="bg-emerald-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 active:scale-95">
+                <span>Finalizar</span>
+                <i class="fa-brands fa-whatsapp text-base"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Notification Modal -->
+    <div id="customModal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center shadow-xl border border-stone-200 transform transition-all scale-95 opacity-0" id="modalCard">
+            <div id="modalIconContainer" class="w-12 h-12 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center mx-auto mb-3 text-xl">
+                <i class="fa-solid fa-circle-exclamation"></i>
+            </div>
+            <h3 id="modalTitle" class="text-base font-bold text-choc-main mb-2">Informação Necessária</h3>
+            <p id="modalMessage" class="text-xs sm:text-sm text-stone-600 mb-5 leading-relaxed">Por favor, preencha os campos para continuar.</p>
+            <button type="button" onclick="closeModal()" class="w-full py-3 rounded-xl bg-choc-main text-white font-bold text-xs hover:bg-choc-light transition-colors touch-btn">
+                Entendido
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 text-xs text-stone-500 border-t border-stone-200 mt-12 bg-white">
+        <p class="font-bold text-choc-main text-sm">1º Festival de Doces - Rita Joice</p>
+        <p class="text-stone-400 mt-1">Confeitaria Artesanal &bull; Sinop - MT</p>
+    </footer>
+
+    <script>
+        const sweetsData = [
+            // Tradicionais
+            { id: 'brigadeiro', name: 'Brigadeiro', category: 'Tradicional', price: 2.50, desc: 'Brigadeiro gourmet com granulado nobre' },
+            { id: 'beijinho', name: 'Beijinho', category: 'Tradicional', price: 2.00, desc: 'Doce de coco ralado com textura suave' },
+            { id: 'churros', name: 'Brigadeiro de Churros', category: 'Tradicional', price: 1.90, desc: 'Massa com canela e recheio de doce de leite' },
+            { id: 'ninho_nutella', name: 'Ninho com Nutella', category: 'Tradicional', price: 2.10, desc: 'Massa de Leite Ninho recheada com Nutella' },
+            
+            // Especiais
+            { id: 'ovomaltine', name: 'Bombom Ovomaltine', category: 'Especial', price: 2.70, desc: 'Creme crocante de chocolate com Ovomaltine' },
+            { id: 'surpresa_uva', name: 'Surpresa de Uva', category: 'Especial', price: 2.70, desc: 'Uva verde fresca envolvida em brigadeiro branco' },
+            { id: 'ourico', name: 'Ouriço', category: 'Especial', price: 2.40, desc: 'Docinho artesanal envolto em castanhas selecionadas' },
+            { id: 'ferrero', name: 'Brigadeiro Ferrero Rocher', category: 'Especial', price: 2.50, desc: 'Combinação fina de avelã e chocolate nobre' }
+        ];
+
+        // Sinop Neighborhoods Database & Fees
+        const sinopNeighborhoods = [
+            { name: 'Centro / Setor Comercial', fee: 7.00 },
+            { name: 'Jardim Itália I, II, III', fee: 7.00 },
+            { name: 'Jardim Maringá', fee: 7.00 },
+            { name: 'Jardim Botânico', fee: 7.00 },
+            { name: 'Jardim Primaveras', fee: 7.00 },
+            { name: 'Jardim das Nações', fee: 7.00 },
+            { name: 'Jardim Caribe / Califórnia', fee: 7.00 },
+            { name: 'Aquarela das Artes', fee: 8.00 },
+            { name: 'Residencial Florença', fee: 8.00 },
+            { name: 'Jardim Imperial', fee: 8.00 },
+            { name: 'Residencial Paris I, II, III', fee: 8.00 },
+            { name: 'Jardim Umuarama', fee: 8.00 },
+            { name: 'São Cristóvão', fee: 8.00 },
+            { name: 'Jardim das Palmeiras / Violetas', fee: 8.00 },
+            { name: 'Jardim Celeste / Aurora', fee: 8.00 },
+            { name: 'Setor Industrial Norte / Sul', fee: 10.00 },
+            { name: 'Alto da Glória', fee: 10.00 },
+            { name: 'Chácara de Lazer Maria Carolina', fee: 10.00 },
+            { name: 'Parque das Araras', fee: 20.00 },
+            { name: 'Outro Bairro de Sinop (A combinar no WhatsApp)', fee: null }
+        ];
+
+        let selectedNeighborhoodObj = null;
+
+        // Store quantities for each sweet
+        const quantities = {};
+        sweetsData.forEach(s => quantities[s.id] = 0);
+
+        let activeComboName = null;
+        let deliveryFee = 0.00;
+        let isPickup = false;
+
+        // Handle Typing and Intelligent Suggestions for Neighborhood
+        function handleNeighborhoodTyping() {
+            const inputVal = document.getElementById('neighborhoodInput').value;
+            const suggestionsList = document.getElementById('suggestionsList');
+            const searchNorm = inputVal.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+
+            const matches = sinopNeighborhoods.filter(item => {
+                const nameNorm = item.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                return nameNorm.includes(searchNorm);
+            });
+
+            if (matches.length === 0 && searchNorm.length > 0) {
+                suggestionsList.innerHTML = `
+                    <div onclick="selectNeighborhoodCustom()" class="p-3 hover:bg-stone-50 cursor-pointer text-xs font-semibold text-stone-700 flex justify-between items-center">
+                        <span>${inputVal} (Outro Bairro de Sinop)</span>
+                        <span class="text-amber-700 font-bold bg-amber-50 px-2 py-0.5 rounded text-[11px]">A combinar</span>
+                    </div>
+                `;
+                suggestionsList.classList.remove('hidden');
+                return;
+            }
+
+            if (matches.length > 0) {
+                let listHtml = '';
+                matches.forEach(item => {
+                    const feeDisplay = item.fee !== null ? `Taxa: R$ ${item.fee.toFixed(2).replace('.', ',')}` : 'A combinar';
+                    const feeBadgeColor = item.fee !== null ? 'bg-emerald-50 text-emerald-800' : 'bg-amber-50 text-amber-800';
+                    
+                    // Escape single quotes for onclick inline string
+                    const safeName = item.name.replace(/'/g, "\\'");
+                    listHtml += `
+                        <div onclick="selectNeighborhoodByName('${safeName}')" class="p-3 hover:bg-rose-light/80 cursor-pointer flex justify-between items-center text-xs font-medium transition-colors">
+                            <span class="font-bold text-choc-main">${item.name}</span>
+                            <span class="font-extrabold ${feeBadgeColor} px-2.5 py-1 rounded-lg text-[11px] border border-stone-200">${feeDisplay}</span>
+                        </div>
+                    `;
+                });
+                suggestionsList.innerHTML = listHtml;
+                suggestionsList.classList.remove('hidden');
+            } else {
+                suggestionsList.classList.add('hidden');
+            }
+        }
+
+        // Select Neighborhood by Object/Name
+        function selectNeighborhoodByName(neighborhoodName) {
+            const found = sinopNeighborhoods.find(n => n.name === neighborhoodName);
+            if (found) {
+                selectedNeighborhoodObj = found;
+                document.getElementById('neighborhoodInput').value = found.name;
+                
+                if (found.fee !== null) {
+                    deliveryFee = found.fee;
+                    document.getElementById('badgeFeeText').innerText = `+ R$ ${found.fee.toFixed(2).replace('.', ',')}`;
+                } else {
+                    deliveryFee = 0;
+                    document.getElementById('badgeFeeText').innerText = `A combinar`;
+                }
+
+                document.getElementById('selectedNeighborhoodBadge').classList.remove('hidden');
+            } else {
+                selectNeighborhoodCustom();
+            }
+
+            document.getElementById('suggestionsList').classList.add('hidden');
+            updateSummary();
+        }
+
+        function selectNeighborhoodCustom() {
+            const currentText = document.getElementById('neighborhoodInput').value.trim() || 'Outro Bairro';
+            selectedNeighborhoodObj = { name: currentText, fee: null };
+            deliveryFee = 0;
+            document.getElementById('badgeFeeText').innerText = `A combinar`;
+            document.getElementById('selectedNeighborhoodBadge').classList.remove('hidden');
+            document.getElementById('suggestionsList').classList.add('hidden');
+            updateSummary();
+        }
+
+        // Hide suggestions when clicking outside
+        document.addEventListener('click', function(e) {
+            const container = document.getElementById('neighborhoodContainer');
+            if (container && !container.contains(e.target)) {
+                const suggestionsList = document.getElementById('suggestionsList');
+                if (suggestionsList) suggestionsList.classList.add('hidden');
+            }
+        });
+
+        // CEP Auto-Fill Function via ViaCEP API
+        function searchCEP() {
+            const cepInput = document.getElementById('cepInput');
+            const cepStatus = document.getElementById('cepStatus');
+            const cleanCEP = cepInput.value.replace(/\D/g, '');
+
+            if (cleanCEP.length !== 8) {
+                cepStatus.innerText = 'Digite um CEP válido com 8 números.';
+                cepStatus.className = 'text-[11px] text-amber-700 mt-1 block font-medium';
+                return;
+            }
+
+            cepStatus.innerText = 'Buscando endereço...';
+            cepStatus.className = 'text-[11px] text-stone-500 mt-1 block font-medium';
+
+            fetch(`https://viacep.com.br/ws/${cleanCEP}/json/`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.erro) {
+                        cepStatus.innerText = 'CEP não encontrado. Digite a rua e o bairro manualmente.';
+                        cepStatus.className = 'text-[11px] text-red-600 mt-1 block font-medium';
+                    } else {
+                        if (data.logradouro) {
+                            document.getElementById('deliveryStreet').value = data.logradouro;
+                        }
+                        
+                        const returnedBairro = data.bairro || '';
+                        
+                        if (returnedBairro) {
+                            const searchNorm = returnedBairro.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+                            
+                            // Busca bairro correspondente na lista de Sinop
+                            const matched = sinopNeighborhoods.find(item => {
+                                const nameNorm = item.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                                const mainNamePart = nameNorm.split('/')[0].trim();
+                                return nameNorm.includes(searchNorm) || searchNorm.includes(mainNamePart);
+                            });
+
+                            if (matched) {
+                                selectNeighborhoodByName(matched.name);
+                            } else {
+                                document.getElementById('neighborhoodInput').value = returnedBairro;
+                                selectNeighborhoodCustom();
+                            }
+                        }
+                        
+                        cepStatus.innerText = `Endereço localizado: ${data.logradouro ? data.logradouro + ', ' : ''}${returnedBairro ? 'Bairro ' + returnedBairro : ''}`;
+                        cepStatus.className = 'text-[11px] text-emerald-700 mt-1 block font-bold';
+                        updateSummary();
+                    }
+                })
+                .catch(() => {
+                    cepStatus.innerText = 'Não foi possível buscar o CEP no momento. Preencha manualmente a rua e o bairro.';
+                    cepStatus.className = 'text-[11px] text-stone-500 mt-1 block';
+                });
+        }
+
+        // Render Sweet Selection Cards
+        function renderSweets() {
+            const tradGrid = document.getElementById('tradicionaisGrid');
+            const espGrid = document.getElementById('especiaisGrid');
+
+            tradGrid.innerHTML = '';
+            espGrid.innerHTML = '';
+
+            sweetsData.forEach(sweet => {
+                const cardHtml = `
+                    <div class="bg-white rounded-xl p-3.5 border border-stone-300 shadow-xs flex flex-col justify-between hover:border-choc-main transition-all">
+                        <div>
+                            <div class="flex items-start justify-between gap-1 mb-1">
+                                <h4 class="font-bold text-choc-main text-sm sm:text-base">${sweet.name}</h4>
+                                <span class="font-bold text-xs text-choc-light bg-stone-100 px-2 py-0.5 rounded border border-stone-200 shrink-0">
+                                    R$ ${sweet.price.toFixed(2).replace('.', ',')}
+                                </span>
+                            </div>
+                            <p class="text-xs text-stone-500 mb-3 leading-tight">${sweet.desc}</p>
+                        </div>
+                        
+                        <!-- Simple Large Quantity Selector Buttons -->
+                        <div class="flex items-center justify-between pt-2 border-t border-stone-100">
+                            <span class="text-[11px] font-bold text-stone-400 uppercase">Qtd:</span>
+                            <div class="flex items-center gap-1.5">
+                                <button type="button" onclick="changeQty('${sweet.id}', -1)" 
+                                    class="w-9 h-9 rounded-lg bg-stone-100 text-choc-main font-extrabold text-base flex items-center justify-center border border-stone-300 hover:bg-stone-200 active:scale-95 transition-all touch-btn">
+                                    <i class="fa-solid fa-minus text-xs"></i>
+                                </button>
+                                <span id="qty-${sweet.id}" class="w-8 text-center font-extrabold text-base text-choc-main">0</span>
+                                <button type="button" onclick="changeQty('${sweet.id}', 1)" 
+                                    class="w-9 h-9 rounded-lg bg-choc-main text-white font-extrabold text-base flex items-center justify-center hover:bg-choc-light active:scale-95 transition-all touch-btn">
+                                    <i class="fa-solid fa-plus text-xs"></i>
+                                </button>
+                                <button type="button" onclick="changeQty('${sweet.id}', 5)" 
+                                    class="ml-1 px-2 py-1.5 rounded-lg bg-rose-light text-rose-accent font-bold text-xs border border-rose-gold/40 hover:bg-rose-gold hover:text-white transition-colors">
+                                    +5
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                if (sweet.category === 'Tradicional') {
+                    tradGrid.innerHTML += cardHtml;
+                } else {
+                    espGrid.innerHTML += cardHtml;
+                }
+            });
+        }
+
+        // Change quantity function
+        function changeQty(sweetId, delta) {
+            activeComboName = null;
+            const current = quantities[sweetId] || 0;
+            const updated = Math.max(0, current + delta);
+            quantities[sweetId] = updated;
+
+            const el = document.getElementById(`qty-${sweetId}`);
+            if (el) el.innerText = updated;
+            updateSummary();
+        }
+
+        // Preset combo selection (1 de cada / 2 de cada)
+        function selectPresetBox(multiplier) {
+            if (multiplier === 1) {
+                activeComboName = 'Caixa Degustação (8 doces - R$ 18,80)';
+            } else if (multiplier === 2) {
+                activeComboName = 'Caixa Festival (16 doces - R$ 37,60)';
+            }
+
+            sweetsData.forEach(s => {
+                quantities[s.id] = multiplier;
+                const el = document.getElementById(`qty-${s.id}`);
+                if (el) el.innerText = multiplier;
+            });
+            updateSummary();
+
+            // Rola suavemente para a seção de dados e entrega
+            const stepDetails = document.getElementById('step-details');
+            if (stepDetails) {
+                stepDetails.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Clear all quantities
+        function clearAllQuantities() {
+            activeComboName = null;
+            sweetsData.forEach(s => {
+                quantities[s.id] = 0;
+                const el = document.getElementById(`qty-${s.id}`);
+                if (el) el.innerText = '0';
+            });
+            updateSummary();
+        }
+
+        // Toggle fulfillment between delivery and pickup
+        function toggleFulfillment(type) {
+            const deliverySection = document.getElementById('deliveryDetailsSection');
+            const pickupSection = document.getElementById('pickupDetailsSection');
+            
+            const radioEntrega = document.getElementById('radioEntregaCheck');
+            const radioRetirada = document.getElementById('radioRetiradaCheck');
+
+            const optionEntrega = document.getElementById('optionEntregaLabel');
+            const optionRetirada = document.getElementById('optionRetiradaLabel');
+
+            if (type === 'retirada') {
+                isPickup = true;
+                deliverySection.classList.add('hidden');
+                pickupSection.classList.remove('hidden');
+
+                radioEntrega.innerHTML = `<div class="w-2.5 h-2.5 rounded-full bg-transparent"></div>`;
+                radioRetirada.innerHTML = `<div class="w-2.5 h-2.5 rounded-full bg-choc-main"></div>`;
+
+                optionEntrega.className = "relative flex items-center gap-3 p-4 rounded-xl border-2 border-stone-300 bg-white cursor-pointer transition-all hover:border-stone-400 touch-btn";
+                optionRetirada.className = "relative flex items-center gap-3 p-4 rounded-xl border-2 border-choc-main bg-rose-light/60 cursor-pointer transition-all touch-btn";
+                
+                deliveryFee = 0;
+            } else {
+                isPickup = false;
+                deliverySection.classList.remove('hidden');
+                pickupSection.classList.add('hidden');
+
+                radioEntrega.innerHTML = `<div class="w-2.5 h-2.5 rounded-full bg-choc-main"></div>`;
+                radioRetirada.innerHTML = `<div class="w-2.5 h-2.5 rounded-full bg-transparent"></div>`;
+
+                optionEntrega.className = "relative flex items-center gap-3 p-4 rounded-xl border-2 border-choc-main bg-rose-light/60 cursor-pointer transition-all touch-btn";
+                optionRetirada.className = "relative flex items-center gap-3 p-4 rounded-xl border-2 border-stone-300 bg-white cursor-pointer transition-all hover:border-stone-400 touch-btn";
+                
+                updateDeliveryFee();
+            }
+
+            updateSummary();
+        }
+
+        function switchToPickup() {
+            const radioRetiradaInput = document.querySelector('input[name="fulfillment"][value="retirada"]');
+            if (radioRetiradaInput) {
+                radioRetiradaInput.checked = true;
+                toggleFulfillment('retirada');
+            }
+        }
+
+        // Update Delivery Fee calculation
+        function updateDeliveryFee() {
+            if (isPickup) {
+                deliveryFee = 0;
+            } else if (selectedNeighborhoodObj) {
+                deliveryFee = selectedNeighborhoodObj.fee || 0;
+            } else {
+                deliveryFee = 0;
+            }
+            updateSummary();
+        }
+
+        // Update live total summary
+        function updateSummary() {
+            const summaryContainer = document.getElementById('orderItemsSummary');
+            let itemsHtml = '';
+            let totalCount = 0;
+            let subtotal = 0;
+
+            if (activeComboName) {
+                itemsHtml += `
+                    <div class="bg-rose-light text-choc-main border border-rose-gold/40 p-2.5 rounded-xl mb-3 text-xs font-bold flex items-center justify-between">
+                        <span><i class="fa-solid fa-box-open text-rose-accent mr-1.5"></i> Opção Selecionada:</span>
+                        <span class="text-rose-accent font-extrabold uppercase">${activeComboName}</span>
+                    </div>
+                `;
+            }
+
+            sweetsData.forEach(sweet => {
+                const qty = quantities[sweet.id] || 0;
+                if (qty > 0) {
+                    const itemTotal = qty * sweet.price;
+                    totalCount += qty;
+                    subtotal += itemTotal;
+
+                    itemsHtml += `
+                        <div class="flex justify-between items-center py-2 border-b border-stone-100 last:border-0">
+                            <div class="flex items-center gap-2">
+                                <span class="font-extrabold text-choc-main bg-stone-100 px-2.5 py-1 rounded-lg border border-stone-200 text-xs">${qty}x</span>
+                                <span class="font-bold text-stone-800 text-xs sm:text-sm">${sweet.name}</span>
+                            </div>
+                            <span class="text-[11px] font-semibold text-stone-400 bg-stone-50 px-2 py-0.5 rounded border border-stone-200">${sweet.category}</span>
+                        </div>
+                    `;
+                }
+            });
+
+            if (totalCount === 0) {
+                summaryContainer.innerHTML = `<p class="text-stone-400 italic py-2 text-xs">Nenhum doce selecionado ainda. Escolha no Passo 1 para ver o resumo.</p>`;
+            } else {
+                summaryContainer.innerHTML = itemsHtml;
+            }
+
+            const total = subtotal + deliveryFee;
+
+            document.getElementById('summaryTotalItemsCount').innerText = `${totalCount} ${totalCount === 1 ? 'unidade' : 'unidades'}`;
+            document.getElementById('summarySubtotal').innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+
+            const deliveryFeeEl = document.getElementById('summaryDeliveryFee');
+            if (isPickup) {
+                deliveryFeeEl.innerText = 'Retirada sem taxa (R$ 0,00)';
+                deliveryFeeEl.className = 'font-bold text-emerald-700';
+            } else {
+                const neighborhoodText = document.getElementById('neighborhoodInput').value.trim();
+                if (selectedNeighborhoodObj && selectedNeighborhoodObj.fee !== null && deliveryFee > 0) {
+                    deliveryFeeEl.innerText = `R$ ${deliveryFee.toFixed(2).replace('.', ',')}`;
+                    deliveryFeeEl.className = 'font-bold text-choc-dark';
+                } else if (neighborhoodText.length > 0) {
+                    deliveryFeeEl.innerText = 'A combinar no WhatsApp';
+                    deliveryFeeEl.className = 'font-bold text-amber-700';
+                } else {
+                    deliveryFeeEl.innerText = 'Informe o Bairro';
+                    deliveryFeeEl.className = 'font-bold text-stone-400';
+                }
+            }
+
+            document.getElementById('summaryTotal').innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+
+            // Update mobile floating bar
+            document.getElementById('mobileCount').innerText = totalCount;
+            document.getElementById('mobileTotal').innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+
+            const floatingBar = document.getElementById('floatingBar');
+            if (totalCount > 0) {
+                floatingBar.classList.remove('translate-y-full');
+            } else {
+                floatingBar.classList.add('translate-y-full');
+            }
+        }
+
+        // Construct & Send Message via WhatsApp
+        function sendOrderToWhatsApp() {
+            let totalCount = 0;
+            let subtotal = 0;
+            const selectedItems = [];
+
+            sweetsData.forEach(sweet => {
+                const qty = quantities[sweet.id] || 0;
+                if (qty > 0) {
+                    totalCount += qty;
+                    const itemTotal = qty * sweet.price;
+                    subtotal += itemTotal;
+                    selectedItems.push(`- ${qty}x ${sweet.name} (${sweet.category})`);
+                }
+            });
+
+            if (totalCount === 0) {
+                showModal('Escolha os Doces', 'Por favor, selecione ao menos 1 doce no Passo 1 antes de continuar.');
+                return;
+            }
+
+            const name = document.getElementById('customerName').value.trim();
+            if (!name) {
+                showModal('Seu Nome é Necessário', 'Por favor, digite seu nome completo no Passo 2.');
+                return;
+            }
+
+            const street = document.getElementById('deliveryStreet').value.trim();
+            const number = document.getElementById('deliveryNumber').value.trim();
+            const neighborhoodInputVal = document.getElementById('neighborhoodInput').value.trim();
+
+            if (!isPickup) {
+                if (!neighborhoodInputVal) {
+                    showModal('Selecione o Bairro', 'Por favor, informe ou selecione o seu bairro em Sinop no Passo 2.');
+                    return;
+                }
+                if (!street || !number) {
+                    showModal('Endereço Incompleto', 'Por favor, informe a rua e o número da residência no Passo 2.');
+                    return;
+                }
+            }
+
+            // Message formulation clean and structured
+            let msg = `1º FESTIVAL DE DOCES - RITA JOICE\n\n`;
+            msg += `NOME DO CLIENTE: ${name}\n\n`;
+            msg += `SELEÇÃO DE DOCES (${totalCount} UNIDADES):\n`;
+            msg += selectedItems.join('\n') + `\n\n`;
+            msg += `Subtotal dos Doces: R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+
+            if (isPickup) {
+                msg += `FORMA DE RECEBIMENTO: RETIRADA no endereço da Rita Joice\n`;
+                msg += `Endereço de Retirada: Rua Dois, Jardim Nápoles - Sinop/MT\n`;
+                msg += `Taxa de Envio: R$ 0,00 (Sem taxa)\n`;
+            } else {
+                msg += `FORMA DE RECEBIMENTO: ENTREGA EM DOMICÍLIO\n`;
+                msg += `Endereço: ${street}, Nº ${number}\n`;
+                msg += `Bairro: ${neighborhoodInputVal}\n`;
+                
+                if (selectedNeighborhoodObj && selectedNeighborhoodObj.fee !== null && deliveryFee > 0) {
+                    msg += `Taxa de Envio: R$ ${deliveryFee.toFixed(2).replace('.', ',')}\n`;
+                } else {
+                    msg += `Taxa de Envio: A combinar\n`;
+                }
+            }
+
+            const grandTotal = subtotal + deliveryFee;
+            msg += `\nVALOR TOTAL ESTIMADO: R$ ${grandTotal.toFixed(2).replace('.', ',')}\n\n`;
+            msg += `Gostaria de confirmar o meu pedido!`;
+
+            const targetPhone = "5566996413664";
+            const encodedMsg = encodeURIComponent(msg);
+            const whatsappUrl = `https://wa.me/${targetPhone}?text=${encodedMsg}`;
+
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Initialize Page
+        window.onload = function() {
+            renderSweets();
+            updateSummary();
+        };
+    </script>
+</body>
+</html>
