@@ -880,7 +880,38 @@
             const encodedMsg = encodeURIComponent(msg);
             const whatsappUrl = `https://wa.me/${targetPhone}?text=${encodedMsg}`;
 
-            window.open(whatsappUrl, '_blank');
+            try {
+                window.open(whatsappUrl, '_blank');
+            } catch (e) {
+                window.location.href = whatsappUrl;
+            }
+        }
+
+        // Modal Helpers
+        function showModal(title, message) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalMessage').innerText = message;
+            const modal = document.getElementById('customModal');
+            const card = document.getElementById('modalCard');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                card.classList.remove('opacity-0', 'scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const card = document.getElementById('modalCard');
+            card.classList.add('opacity-0', 'scale-95');
+            setTimeout(() => {
+                document.getElementById('customModal').classList.add('hidden');
+            }, 200);
+        }
+
+        function scrollToSummary() {
+            const stepSummary = document.getElementById('step-summary');
+            if (stepSummary) {
+                stepSummary.scrollIntoView({ behavior: 'smooth' });
+            }
         }
 
         // Initialize Page
