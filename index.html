@@ -351,6 +351,42 @@
                     </p>
                 </div>
             </div>
+
+            <!-- Payment Method Selection -->
+            <div class="space-y-2 pt-4 border-t border-stone-200">
+                <label class="block text-xs font-bold text-choc-main uppercase tracking-wider mb-2">
+                    Forma de Pagamento *
+                </label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <!-- Option PIX -->
+                    <label id="optionPixLabel" onclick="togglePayment('pix')" class="relative flex items-center gap-3 p-3.5 rounded-xl border-2 border-choc-main bg-rose-light/60 cursor-pointer transition-all touch-btn">
+                        <input type="radio" name="payment" value="pix" checked class="sr-only">
+                        <div id="radioPixCheck" class="w-5 h-5 rounded-full border-2 border-choc-main flex items-center justify-center bg-white shrink-0">
+                            <div class="w-2.5 h-2.5 rounded-full bg-choc-main"></div>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-xs sm:text-sm text-choc-main flex items-center gap-1.5">
+                                <i class="fa-brands fa-pix text-emerald-600"></i> PIX
+                            </span>
+                            <span class="block text-[11px] text-emerald-700 font-semibold">Sem acréscimo (Chave enviada no Whats)</span>
+                        </div>
+                    </label>
+
+                    <!-- Option Cartão -->
+                    <label id="optionCartaoLabel" onclick="togglePayment('cartao')" class="relative flex items-center gap-3 p-3.5 rounded-xl border-2 border-stone-300 bg-white cursor-pointer transition-all hover:border-stone-400 touch-btn">
+                        <input type="radio" name="payment" value="cartao" class="sr-only">
+                        <div id="radioCartaoCheck" class="w-5 h-5 rounded-full border-2 border-stone-400 flex items-center justify-center bg-white shrink-0">
+                            <div class="w-2.5 h-2.5 rounded-full bg-transparent"></div>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-xs sm:text-sm text-choc-main flex items-center gap-1.5">
+                                <i class="fa-solid fa-credit-card text-amber-700"></i> Cartão de Crédito
+                            </span>
+                            <span class="block text-[11px] text-amber-800 font-semibold">Com acréscimo da maquininha (a consultar)</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
         </section>
 
         <!-- STEP 3: ORDER SUMMARY & WHATSAPP BUTTON -->
@@ -487,6 +523,32 @@
         let activeComboName = null;
         let deliveryFee = 0.00;
         let isPickup = false;
+
+        let paymentMethod = 'pix';
+
+        function togglePayment(method) {
+            paymentMethod = method;
+            const radioPix = document.getElementById('radioPixCheck');
+            const radioCartao = document.getElementById('radioCartaoCheck');
+            const optionPix = document.getElementById('optionPixLabel');
+            const optionCartao = document.getElementById('optionCartaoLabel');
+
+            if (method === 'cartao') {
+                radioPix.innerHTML = `<div class="w-2.5 h-2.5 rounded-full bg-transparent"></div>`;
+                radioCartao.innerHTML = `<div class="w-2.5 h-2.5 rounded-full bg-choc-main"></div>`;
+
+                optionPix.className = "relative flex items-center gap-3 p-3.5 rounded-xl border-2 border-stone-300 bg-white cursor-pointer transition-all hover:border-stone-400 touch-btn";
+                optionCartao.className = "relative flex items-center gap-3 p-3.5 rounded-xl border-2 border-choc-main bg-rose-light/60 cursor-pointer transition-all touch-btn";
+            } else {
+                radioPix.innerHTML = `<div class="w-2.5 h-2.5 rounded-full bg-choc-main"></div>`;
+                radioCartao.innerHTML = `<div class="w-2.5 h-2.5 rounded-full bg-transparent"></div>`;
+
+                optionPix.className = "relative flex items-center gap-3 p-3.5 rounded-xl border-2 border-choc-main bg-rose-light/60 cursor-pointer transition-all touch-btn";
+                optionCartao.className = "relative flex items-center gap-3 p-3.5 rounded-xl border-2 border-stone-300 bg-white cursor-pointer transition-all hover:border-stone-400 touch-btn";
+            }
+
+            updateSummary();
+        }
 
         // Change quantity for individual sweets
         function changeQty(sweetId, delta) {
@@ -777,6 +839,13 @@
                 } else {
                     msg += `🚚 *Taxa de Envio:* A combinar\n`;
                 }
+            }
+
+            // Payment Details In WhatsApp Message (without fixed percentage)
+            if (paymentMethod === 'pix') {
+                msg += `💳 *FORMA DE PAGAMENTO:* *PIX*\n`;
+            } else {
+                msg += `💳 *FORMA DE PAGAMENTO:* *CARTÃO DE CRÉDITO (Com acréscimo da maquininha a consultar)*\n`;
             }
 
             const grandTotal = subtotal + deliveryFee;
