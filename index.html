@@ -634,9 +634,9 @@
         // Preset combo selection (1 de cada / 2 de cada)
         function selectPresetBox(multiplier) {
             if (multiplier === 1) {
-                activeComboName = 'Caixa Degustação (8 doces - R$ 18,80)';
+                activeComboName = 'Caixa Degustação (8 doces)';
             } else if (multiplier === 2) {
-                activeComboName = 'Caixa Festival (16 doces - R$ 37,60)';
+                activeComboName = 'Caixa Festival (16 doces)';
             }
 
             sweetsData.forEach(s => {
@@ -814,7 +814,7 @@
                     totalCount += qty;
                     const itemTotal = qty * sweet.price;
                     subtotal += itemTotal;
-                    selectedItems.push(`- ${qty}x ${sweet.name} (${sweet.category})`);
+                    selectedItems.push(`• *${qty}x* ${sweet.name}`);
                 }
             });
 
@@ -844,32 +844,37 @@
                 }
             }
 
-            // Message formulation clean and structured
-            let msg = `1º FESTIVAL DE DOCES - RITA JOICE\n\n`;
-            msg += `NOME DO CLIENTE: ${name}\n\n`;
-            msg += `SELEÇÃO DE DOCES (${totalCount} UNIDADES):\n`;
+            // Formatação limpa usando o negrito nativo do WhatsApp (*texto*)
+            let msg = `✨ *1º FESTIVAL DE DOCES - RITA JOICE* ✨\n\n`;
+            msg += `👤 *CLIENTE:* *${name.toUpperCase()}*\n\n`;
+
+            if (activeComboName) {
+                msg += `📦 *OPÇÃO SELECIONADA:* *${activeComboName.toUpperCase()}*\n\n`;
+            }
+
+            msg += `📋 *ITENS DO PEDIDO (${totalCount} doces):*\n`;
             msg += selectedItems.join('\n') + `\n\n`;
-            msg += `Subtotal dos Doces: R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+            msg += `💵 *Subtotal dos Doces:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
 
             if (isPickup) {
-                msg += `FORMA DE RECEBIMENTO: RETIRADA no endereço da Rita Joice\n`;
-                msg += `Endereço de Retirada: Rua Dois, Jardim Nápoles - Sinop/MT\n`;
-                msg += `Taxa de Envio: R$ 0,00 (Sem taxa)\n`;
+                msg += `📍 *FORMA DE RECEBIMENTO:* *RETIRADA*\n`;
+                msg += `🏠 *Endereço:* Rua Dois, Jardim Nápoles - Sinop/MT\n`;
+                msg += `🚚 *Taxa de Envio:* Sem taxa (R$ 0,00)\n`;
             } else {
-                msg += `FORMA DE RECEBIMENTO: ENTREGA EM DOMICÍLIO\n`;
-                msg += `Endereço: ${street}, Nº ${number}\n`;
-                msg += `Bairro: ${neighborhoodInputVal}\n`;
+                msg += `🛵 *FORMA DE RECEBIMENTO:* *ENTREGA EM DOMICÍLIO*\n`;
+                msg += `🏠 *Endereço:* ${street}, Nº ${number}\n`;
+                msg += `🏘️ *Bairro:* ${neighborhoodInputVal}\n`;
                 
                 if (selectedNeighborhoodObj && selectedNeighborhoodObj.fee !== null && deliveryFee > 0) {
-                    msg += `Taxa de Envio: R$ ${deliveryFee.toFixed(2).replace('.', ',')}\n`;
+                    msg += `🚚 *Taxa de Envio:* R$ ${deliveryFee.toFixed(2).replace('.', ',')}\n`;
                 } else {
-                    msg += `Taxa de Envio: A combinar\n`;
+                    msg += `🚚 *Taxa de Envio:* A combinar\n`;
                 }
             }
 
             const grandTotal = subtotal + deliveryFee;
-            msg += `\nVALOR TOTAL ESTIMADO: R$ ${grandTotal.toFixed(2).replace('.', ',')}\n\n`;
-            msg += `Gostaria de confirmar o meu pedido!`;
+            msg += `\n💰 *VALOR TOTAL ESTIMADO:* *R$ ${grandTotal.toFixed(2).replace('.', ',')}*\n\n`;
+            msg += `Olá Rita, gostaria de confirmar o meu pedido! 😊`;
 
             const targetPhone = "5566996413664";
             const encodedMsg = encodeURIComponent(msg);
