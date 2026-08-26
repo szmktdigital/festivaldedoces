@@ -66,8 +66,8 @@
 
         <div class="relative z-10 max-w-3xl mx-auto px-4 py-8 sm:py-14 text-center">
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-gold/20 border border-rose-gold/40 text-rose-gold text-xs sm:text-sm font-bold tracking-wider uppercase mb-3">
-                <i class="fa-solid fa-star text-xs"></i>
-                <span>Edição Especial &bull; Confeitaria Artesanal</span>
+                <i class="fa-solid fa-clock flex-shrink-0"></i>
+                <span>PRÉ-VENDA ABERTA &bull; Garanta o seu pedido</span>
             </div>
 
             <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white mb-1">
@@ -77,7 +77,29 @@
                 por Rita Joice
             </p>
 
-            <p class="text-stone-200 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed font-normal bg-black/40 p-3.5 rounded-xl border border-white/10">
+            <!-- Banner Informativo de Pré-Venda e Data -->
+            <div class="bg-choc-main/90 border-2 border-rose-gold/60 rounded-2xl p-4 sm:p-5 max-w-xl mx-auto shadow-lg text-left space-y-2 mb-4">
+                <div class="flex items-center gap-2 text-rose-gold font-bold text-xs sm:text-sm uppercase tracking-wide">
+                    <i class="fa-solid fa-calendar-check text-base"></i>
+                    <span>Atenção: Evento em Formato de Pré-Venda!</span>
+                </div>
+                <p class="text-stone-100 text-xs sm:text-sm leading-relaxed">
+                    Faça sua encomenda antecipada agora! As retiradas e entregas dos doces acontecerão exclusivamente no dia:
+                </p>
+                <div class="bg-rose-gold/20 border border-rose-gold/40 rounded-xl p-3 flex flex-wrap items-center justify-around gap-2 text-center text-white font-bold text-xs sm:text-sm">
+                    <span class="flex items-center gap-1.5">
+                        <i class="fa-solid fa-calendar text-rose-gold"></i>
+                        <span>Dia 06 de Setembro</span>
+                    </span>
+                    <span class="hidden sm:inline text-rose-gold/50">•</span>
+                    <span class="flex items-center gap-1.5">
+                        <i class="fa-solid fa-clock text-rose-gold"></i>
+                        <span>13h00 às 17h00</span>
+                    </span>
+                </div>
+            </div>
+
+            <p class="text-stone-300 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed font-normal">
                 Monte seu pedido em poucos passos: escolha os doces, preencha seus dados de entrega ou escolha retirar sem taxa, e envie diretamente pelo WhatsApp!
             </p>
         </div>
@@ -321,11 +343,11 @@
                 <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-emerald-950 text-xs sm:text-sm">
                     <div class="flex items-center gap-2 font-bold text-emerald-900 mb-1">
                         <i class="fa-solid fa-location-dot text-emerald-600"></i>
-                        <span>Endereço de Retirada: Rua Dois, Jardim Nápoles</span>
+                        <span>Retirada Agendada: Dia 06/09 das 13h00 às 17h00</span>
                     </div>
                     <p class="text-emerald-800 leading-relaxed">
                         Endereço de Retirada: <strong class="text-emerald-950 font-bold">Rua Dois, Jardim Nápoles - Sinop/MT</strong>.<br>
-                        Ao concluir o pedido, a Rita enviará a localização exata no mapa e confirmará os horários para você buscar seus doces com toda praticidade.
+                        Ao concluir o pedido, a Rita enviará a localização exata no mapa e confirmará a liberação para busca no horário agendado do festival.
                     </p>
                 </div>
             </div>
@@ -728,8 +750,10 @@
             }
 
             // Formatação limpa usando o negrito nativo do WhatsApp (*texto*)
-            let msg = `✨ *1º FESTIVAL DE DOCES - RITA JOICE* ✨\n\n`;
-            msg += `👤 *CLIENTE:* *${name.toUpperCase()}*\n\n`;
+            let msg = `✨ *1º FESTIVAL DE DOCES - RITA JOICE* ✨\n`;
+            msg += `🏷️ *PEDIDO DE PRÉ-VENDA*\n\n`;
+            msg += `👤 *CLIENTE:* *${name.toUpperCase()}*\n`;
+            msg += `📅 *DATA DA RETIRADA/ENTREGA:* *06 de Setembro (13h00 às 17h00)*\n\n`;
 
             if (activeComboName) {
                 msg += `📦 *OPÇÃO SELECIONADA:* *${activeComboName.toUpperCase()}*\n\n`;
@@ -740,11 +764,11 @@
             msg += `💵 *Subtotal dos Doces:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
 
             if (isPickup) {
-                msg += `📍 *FORMA DE RECEBIMENTO:* *RETIRADA*\n`;
+                msg += `📍 *FORMA DE RECEBIMENTO:* *RETIRADA (06/09 entre 13h e 17h)*\n`;
                 msg += `🏠 *Endereço:* Rua Dois, Jardim Nápoles - Sinop/MT\n`;
                 msg += `🚚 *Taxa de Envio:* Sem taxa (R$ 0,00)\n`;
             } else {
-                msg += `🛵 *FORMA DE RECEBIMENTO:* *ENTREGA EM DOMICÍLIO*\n`;
+                msg += `🛵 *FORMA DE RECEBIMENTO:* *ENTREGA EM DOMICÍLIO (06/09 entre 13h e 17h)*\n`;
                 msg += `🏠 *Endereço:* ${street}, Nº ${number}\n`;
                 msg += `🏘️ *Bairro:* ${neighborhoodInputVal}\n`;
                 
@@ -757,7 +781,7 @@
 
             const grandTotal = subtotal + deliveryFee;
             msg += `\n💰 *VALOR TOTAL ESTIMADO:* *R$ ${grandTotal.toFixed(2).replace('.', ',')}*\n\n`;
-            msg += `Olá Rita, gostaria de confirmar o meu pedido! 😊`;
+            msg += `Olá Rita, gostaria de confirmar o meu pedido de pré-venda para o dia 06/09! 😊`;
 
             const targetPhone = "5566996413664";
             const encodedMsg = encodeURIComponent(msg);
